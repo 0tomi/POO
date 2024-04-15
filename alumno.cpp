@@ -22,3 +22,7 @@ Alumno::Alumno(long dni, char* nombre){
     this->dni = dni;
     strcpy()
 }
+
+double Alumno::promedio(){
+    return (this->nota1 + this->nota2 + this->nota3) / 3.0;
+}
