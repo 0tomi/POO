@@ -14,6 +14,11 @@ char* Alumno::getNombre(char* nombre)
     return nombre;
 }
 
+int Alumno::getNota3() const
+{
+    this->nota3 = newNota3;
+}
+
 Alumno::Alumno(long dni)
 {
     this->dni = dni;

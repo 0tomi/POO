@@ -11,6 +11,7 @@ class Alumno{
     public:
         Alumno(long dni);
         Alumno(long dni, char* nombre)
+        void setNota3(int newNota3);
 };
 
 #endif // ALUMNO_H
