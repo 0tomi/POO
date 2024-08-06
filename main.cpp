@@ -9,7 +9,7 @@ int main()
     test.push(1);
     test.push(3);
 
-    cout << "Tamanio actual: " << test.getSize();
+    cout << test;
     cout << "\nDato actual: " << test.pop() << endl;
     return 0;
 }

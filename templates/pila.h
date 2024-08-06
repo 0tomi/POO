@@ -1,5 +1,7 @@
 #ifndef PILA_H
 #define PILA_H
+#include <iostream>
+using namespace std;
 
 template <class Locura>
 class pila
@@ -10,6 +12,10 @@ public:
     void push(Locura newDato);
     Locura pop();
     int getSize() const;
+
+    // Test de sobrecarga de operadores
+    template <class LocuraExtreme>
+    friend ostream& operator<<(ostream& os, const pila<LocuraExtreme>& p);
 
 private:
     struct nodo{

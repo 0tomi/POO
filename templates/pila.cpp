@@ -1,12 +1,9 @@
+#ifndef PILA_CPP
+#define PILA_CPP
 #include "pila.h"
-#include <iostream>
-
 template<class Locura>
 // El parentesis es el numero con el cual inicializamos el dato
-pila<Locura>::pila(): size(0), frente(nullptr)
-{
-
-}
+pila<Locura>::pila(): size(0), frente(nullptr) {}
 
 template<class Locura>
 pila<Locura>::pila(Locura dato)
@@ -46,4 +43,11 @@ int pila<Locura>::getSize() const
     return size;
 }
 
+template <class LocuraExtreme>
+ostream& operator<<(ostream& os, const pila<LocuraExtreme>& p)
+{
+    os << "Tamanio de la pila: " << p.size;
+    return os;
+}
 
+#endif
