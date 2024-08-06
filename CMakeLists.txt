@@ -5,7 +5,8 @@ project(POO LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(POO main.cpp)
+add_executable(POO main.cpp
+    templates/pila.h templates/pila.cpp)
 
 include(GNUInstallDirs)
 install(TARGETS POO

@@ -1,30 +1,23 @@
 #ifndef PILA_H
 #define PILA_H
+
 template <class Locura>
-class Pila{
+class pila
+{
 public:
-    Pila();
-    Pila (Locura dato);
+    pila();
+    pila(Locura dato);
     void push(Locura newDato);
     Locura pop();
-    int getSize();
-    
+    int getSize() const;
+
 private:
     struct nodo{
         Locura dato;
         nodo * link;
     };
-    nodo * frente = nullptr;
+    nodo * frente;
     int size;
 };
 
-template<class Locura>
-Pila<Locura>::Pila():
-{
-    size = 0;
-}
-
-
-
-
-#endif
+#endif // PILA_H
