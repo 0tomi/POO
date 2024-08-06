@@ -18,10 +18,11 @@ private:
     int size;
 };
 
-template <class Locura>
-Pila::Pila()
+template<class Locura>
+Pila<Locura>::Pila()
 {
-    size = 0;
+    
 }
+
 
 #endif
