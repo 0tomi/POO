@@ -19,10 +19,12 @@ private:
 };
 
 template<class Locura>
-Pila<Locura>::Pila()
+Pila<Locura>::Pila():
 {
-    
+    size = 0;
 }
+
+
 
 
 #endif
