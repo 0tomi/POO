@@ -1,5 +1,5 @@
-#ifndef "PILALOCURA"
-#define "PILALOCURA"
+#ifndef PILALOCURA_CPP
+#define PILALOCURA_CPP
 template <class T>
 class PilaLocura{
 public:
