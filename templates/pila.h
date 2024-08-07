@@ -17,6 +17,8 @@ public:
     template <class LocuraExtreme>
     friend ostream& operator<<(ostream& os, const pila<LocuraExtreme>& p);
 
+    pila<Locura>& operator+(Locura const& newData);
+
 private:
     struct nodo{
         Locura dato;

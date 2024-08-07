@@ -43,6 +43,13 @@ int pila<Locura>::getSize() const
     return size;
 }
 
+template<class Locura>
+pila<Locura> &pila<Locura>::operator+(const Locura &newData)
+{
+    this->push(newData);
+    return *this;
+}
+
 template <class LocuraExtreme>
 ostream& operator<<(ostream& os, const pila<LocuraExtreme>& p)
 {
