@@ -31,7 +31,9 @@ void test1(){
 
 int main()
 {
-    TomiString test("hola");
+    TomiString test;
+    char * locura = "hola";
+    test = locura;
     cout << test << endl;
     return 0;
 }
