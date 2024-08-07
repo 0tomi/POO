@@ -12,7 +12,6 @@ public:
     void push(Locura newDato);
     Locura pop();
     int getSize() const;
-
     // Test de sobrecarga de operadores
     template <class LocuraExtreme>
     friend ostream& operator<<(ostream& os, const pila<LocuraExtreme>& p);
