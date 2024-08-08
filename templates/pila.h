@@ -9,6 +9,7 @@ class pila
 public:
     pila();
     pila(Locura dato);
+    ~pila();
     void push(Locura newDato);
     Locura pop();
     int getSize() const;

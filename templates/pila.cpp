@@ -14,6 +14,13 @@ pila<Locura>::pila(Locura dato)
 }
 
 template<class Locura>
+pila<Locura>::~pila()
+{
+    while(this->size)
+        this->pop();
+}
+
+template<class Locura>
 void pila<Locura>::push(Locura newDato)
 {
     nodo * aux = new nodo{newDato, frente};
@@ -27,7 +34,8 @@ Locura pila<Locura>::pop()
     // Si la pila esta vacia no deberia retornar nada, pero como esta armado sin punteros
     // directamente no tengo idea que se retorna (sin usar throw)
     if (size == 0)
-        std::cout << "Pila vacia";
+        return Locura{};
+        //std::cout << "Pila vacia";
 
     nodo * aux = frente;
     frente = frente->link;

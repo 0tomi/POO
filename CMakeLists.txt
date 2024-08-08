@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(POO main.cpp
     templates/pila.h templates/pila.cpp
     CString/TomiString.cpp CString/TomiString.h
+    templates/listade.h templates/listade.cpp
 )
 
 include(GNUInstallDirs)
