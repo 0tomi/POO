@@ -13,15 +13,24 @@ public:
     ~TomiString();
 
     // Getters
-    size_t size() const;
+    size_t getLength() const;
 
     // Operadores sobrecargados
     friend std::ostream& operator<<(std::ostream& os, const TomiString& cadena);
-    TomiString operator= (TomiString &otherString);
-    TomiString operator= (char * otherString);
 
+    TomiString operator= (TomiString &otherString);
+    TomiString operator= (const char * otherString);
+    TomiString operator= (const TomiString &otherString);
+
+    TomiString operator+ (TomiString& otherString);
+    TomiString operator+ (const TomiString& otherString);
+    TomiString operator+ (const char * otherString);
+
+    char& operator[](size_t index);
+    const char& operator[](size_t index) const; // Para acceso const
 private:
-    void setString(char * newString);
+    void setString(const char * newString);
+    char * Concaternar(char * string1, const char * string2);
     char * string;
     size_t length;
 };
