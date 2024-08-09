@@ -32,9 +32,11 @@ void test1(){
 
 int main()
 {
-    test1();
-    TomiString test("hola");
-    test = test + " que tal?";
+    TomiString test;
+    TomiString test2("hola");
+    char test3[] = "hola";
+    test = test3;
+    //test = test + " que tal?";
 
     test[1] = 'a';
 

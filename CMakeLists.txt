@@ -9,6 +9,10 @@ add_executable(POO main.cpp
     templates/pila.h templates/pila.cpp
     CString/TomiString.cpp CString/TomiString.h
     templates/listade.h templates/listade.cpp
+    ParcialPRODUCTOS/productos.h ParcialPRODUCTOS/productos.cpp
+    ParcialPRODUCTOS/productonacional.h ParcialPRODUCTOS/productonacional.cpp
+    ParcialPRODUCTOS/productoextranjero.h ParcialPRODUCTOS/productoextranjero.cpp
+    ParcialPRODUCTOS/productooferta.h ParcialPRODUCTOS/productooferta.cpp
 )
 
 include(GNUInstallDirs)
