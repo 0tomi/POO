@@ -5,7 +5,8 @@
 class ProductoNacional: public Productos
 {
 public:
-    ProductoNacional(float newPrecio, char * codigo);
+    ProductoNacional(float precio, char * codigo);
+    void actualizarPrecio(float porcentaje);
 };
 
 #endif // PRODUCTONACIONAL_H

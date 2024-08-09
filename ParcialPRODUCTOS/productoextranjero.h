@@ -1,10 +1,11 @@
 #ifndef PRODUCTOEXTRANJERO_H
 #define PRODUCTOEXTRANJERO_H
-
-class ProductoExtranjero
+#include "productos.h"
+class ProductoExtranjero: public Productos
 {
 public:
-    ProductoExtranjero();
+    ProductoExtranjero(float precio, char * codigo): Productos(precio, codigo){};
+    void actualizarPrecio(float cotizacionAnterior, float cotizacionActual);
 };
 
 #endif // PRODUCTOEXTRANJERO_H

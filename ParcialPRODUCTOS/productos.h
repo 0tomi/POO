@@ -6,8 +6,10 @@ class Productos
 {
 public:
     Productos(float precio, char * codigo);
-    virtual float getPrecio() = 0;
-private:
+    virtual float getPrecio();
+    virtual char * getCodigo();
+
+protected:
     float precio;
     char * codigo;
     // Funcion para obtener un nuevo string xq usamos CString (zzz)

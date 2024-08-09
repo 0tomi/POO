@@ -8,7 +8,12 @@ Productos::Productos(float actualprecio, char * actualcodigo)
 
 float Productos::getPrecio()
 {
+    return this->precio;
+}
 
+char *Productos::getCodigo()
+{
+    return this->codigo;
 }
 
 char *Productos::setNewString(const char *base)
