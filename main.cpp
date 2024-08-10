@@ -2,6 +2,7 @@
 #include <ctype.h>
 #include "templates/pila.cpp"
 #include "CString/TomiString.h"
+#include "templates/listade.cpp"
 
 using namespace std;
 struct TestStructInsano{
@@ -10,9 +11,14 @@ struct TestStructInsano{
     char insana;
 };
 
+template <class T>
+T sumar(T a, T b){
+    return a + b;
+}
+
 void test1(){
     //Test de pila int
-    pila<int> test;
+    pila test(5);
     test.push(1);
     test.push(3);
     test + 10 + 6 + 3 + 7 ;
@@ -30,8 +36,17 @@ void test1(){
     cout << endl << aux.insana;
 }
 
+void test2(){
+    ListaDE<int> lista;
+    lista.insertar(5);
+    lista.insertar(7);
+    cout << lista[1];
+}
+
 int main()
-{      
+{
+    test2();
+
     TomiString test;
     TomiString test2("hola");
     char test3[] = "hola";

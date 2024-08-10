@@ -15,7 +15,7 @@ public:
     void obtener(T dato);
     int getSize() const;
 
-    T& operator[](int index);
+    T operator[](int index);
 
 private:
     struct nodo{
@@ -28,6 +28,8 @@ private:
     nodo * frente;
     nodo * fondo;
     int size;
+
+    void deleteNodo(nodo * nodo2eliminar);
 };
 
 #endif // LISTADE_H
