@@ -25,7 +25,6 @@ private:
         nodo * anterior = nullptr;
     };
 
-    nodo * buscar(int index);
     nodo * frente;
     nodo * fondo;
     int size;
