@@ -13,6 +13,10 @@ add_executable(POO main.cpp
     ParcialPRODUCTOS/productonacional.h ParcialPRODUCTOS/productonacional.cpp
     ParcialPRODUCTOS/productoextranjero.h ParcialPRODUCTOS/productoextranjero.cpp
     ParcialPRODUCTOS/productooferta.h ParcialPRODUCTOS/productooferta.cpp
+    ParcialAux/prodNacional.h ParcialAux/prodNacional.cpp
+    ParcialAux/prodinternacional.h ParcialAux/prodinternacional.cpp
+    ParcialAux/productocompuesto.h ParcialAux/productocompuesto.cpp
+    ParcialAux/gestorparcialaux.h ParcialAux/gestorparcialaux.cpp
 )
 
 include(GNUInstallDirs)
