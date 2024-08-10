@@ -1,9 +1,10 @@
 #include "productocompuesto.h"
 
-ProductoCompuesto::ProductoCompuesto(char * codigo, ProductoNacional * producto):
+ProductoCompuesto::ProductoCompuesto(const char * codigo, ProductoNacional * producto):
     ProductoNacional(producto->getPrecio(), codigo)
 {
-    indice = 0;
+    this->indice = 0;
+    agregarProducto(producto);
 }
 
 void ProductoCompuesto::agregarProducto(ProductoNacional *newProducto)

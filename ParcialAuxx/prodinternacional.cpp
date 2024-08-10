@@ -1,6 +1,6 @@
 #include "prodinternacional.h"
 
-ProductoInternacional::ProductoInternacional(float precio, char * codigo):
+ProductoInternacional::ProductoInternacional(float precio, const char * codigo):
     ProductoNacional(precio,  codigo) {}
 
 void ProductoInternacional::ajustar(float porcentaje)

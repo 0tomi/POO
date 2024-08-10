@@ -4,7 +4,7 @@
 class ProductoInternacional: public ProductoNacional
 {
 public:
-    ProductoInternacional(float precio, char * codigo);
+    ProductoInternacional(float precio, const char * codigo);
     void ajustar(float porcentaje) override;
 };
 

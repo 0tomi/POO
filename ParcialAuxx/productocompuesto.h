@@ -4,7 +4,9 @@
 class ProductoCompuesto: public ProductoNacional
 {
 public:
-    ProductoCompuesto(char * codigo, ProductoNacional * producto);
+    ProductoCompuesto(const char * codigo, ProductoNacional * producto);
+    ProductoCompuesto(const char * codigo): ProductoNacional(0.0, codigo){}
+
     void agregarProducto(ProductoNacional * newProducto);
     void ajustar(float porcentaje) override;
     float getPrecio() override;

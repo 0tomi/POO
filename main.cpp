@@ -31,7 +31,7 @@ void test1(){
 }
 
 int main()
-{
+{      
     TomiString test;
     TomiString test2("hola");
     char test3[] = "hola";
