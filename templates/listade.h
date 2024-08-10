@@ -7,22 +7,28 @@ class ListaDE
 {
 public:
     ListaDE();
+    ListaDE(T dato);
     ~ListaDE();
 
-    void insertar();
+    void insertar(T dato);
     bool eliminar(T dato);
     void obtener(T dato);
-    unsigned int getSize() const;
+    int getSize() const;
+
+    T& operator[](int index);
 
 private:
     struct nodo{
         T dato;
-        nodo * link = nullptr;
+        int index;
+        nodo * siguiente = nullptr;
+        nodo * anterior = nullptr;
     };
 
+    nodo * buscar(int index);
     nodo * frente;
     nodo * fondo;
-    unsigned int size;
+    int size;
 };
 
 #endif // LISTADE_H
