@@ -60,6 +60,8 @@ public:
         this->viajes = new Viaje*[maxViajes];
     }
     void addViaje(Viaje * newViaje){
+        if (dynamic_cast<ViajeMixto*>(newViaje))
+            return; // para no meter un viaje mixto dentro de un viaje mixto.
         if (numViajes == maxViajes)
             modVector(this->maxViajes*2);
          viajes[numViajes++] = newViaje;
