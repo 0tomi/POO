@@ -1,5 +1,0 @@
-Vectores dinámicos:
-Primero para usarlos precisamos de manejar punteros, recuerden que tienen mi video aca explicando como se usan, junto con detallitos que les pueden servir para entender mejor los vectores dinámicos.
-Link: https://www.youtube.com/watch?v=1NnrYbQXfzA
-
-Primero hay que entender una cosa, supongamos un esquema donde tenemos una clase Padre, abstracta, y 2 clases hijas: Hijo e Hija.
