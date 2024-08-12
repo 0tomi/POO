@@ -38,6 +38,7 @@ void test1(){
 
 void test2(){
     ListaDE<int> lista;
+
     lista.insertar(5);
     lista.insertar(7);
     cout << lista[1];
