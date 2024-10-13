@@ -2,6 +2,11 @@
 #include <fstream>
 #include <vector>
 
+/*
+    Ejemplo de lectura dinamica, leyendo structs de un archivo 
+    binario, sin conocer cuantas estructuras hay dentro del archivo.
+*/
+
 struct EstructuraTest{
     char nombre[35];
     float altura;

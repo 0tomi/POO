@@ -2,6 +2,11 @@
 #include <iostream>
 #include <string.h>
 
+/*
+    Ejemplo de escribir un archivo usando
+    usando un array estatico de structs.
+*/
+
 using namespace std;
 
 struct EstructuraTest{
@@ -25,9 +30,10 @@ int main(int argc, char const *argv[])
     pruebas[1].edad = 40;
     pruebas[1].validez = true;
 
-    // Escribimos loes structs
+    // Escribimos los structs
     auto direccion = "archivoBinario.dat";
     ofstream archivoEscritura(direccion, ios::binary);
+    
     // Usamos char* para convertir los structs en simplemente una secuencia de bits.
     // Ya que recuerden que c++ solo ve los archivos como una secuencia de los mismos.
     // El & es para indicar donde empieza el bloque de memoria.
