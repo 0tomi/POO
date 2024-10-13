@@ -4,7 +4,8 @@
 
 /*
     Ejemplo de lectura dinamica, leyendo structs de un archivo 
-    binario, sin conocer cuantas estructuras hay dentro del archivo.
+    binario, sin conocer cuantas estructuras hay dentro del archivo, 
+    empleando vector para guardar los datos.
 */
 
 struct EstructuraTest{
