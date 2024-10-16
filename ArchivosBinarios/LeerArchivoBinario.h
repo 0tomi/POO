@@ -11,12 +11,12 @@ using namespace std;
 template <class Struct>
 vector <Struct> read (const char * direccion){
     Struct aux;
-    ifstream archivo(direccion, ios::binary | ios::ate);
-    auto tamanioArchivo = archivo.tellg();
-    size_t cantidadDatos = tamanioArchivo / sizeof(Struct);
-    archivo.seekg(0, ios::beg); 
+    ifstream archivo(direccion, ios::binary); // | ios::ate);
+    //auto tamanioArchivo = archivo.tellg();
+    //size_t cantidadDatos = tamanioArchivo / sizeof(Struct);
+    //archivo.seekg(0, ios::beg); 
 
-    vector<Struct> datos(cantidadDatos);
+    vector<Struct> datos;
     if (archivo.is_open()) {
         // Leer las estructuras hasta llegar al final del archivo
         while (archivo.read((char*) &aux, sizeof(Struct))) {

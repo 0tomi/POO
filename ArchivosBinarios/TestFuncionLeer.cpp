@@ -11,6 +11,6 @@ struct EstructuraTest{
 int main(int argc, char const *argv[])
 {
     auto Prueba = read<EstructuraTest>("archivoBinario.dat");
-    cout << Prueba.size();
+    cout << Prueba[0].nombre;
     return 0;
 }
