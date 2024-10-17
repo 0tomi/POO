@@ -15,7 +15,7 @@ using namespace std;
 template <class Clase, class DatosClase>
 void write(vector <Clase> &VectorClase, string Direccion){
     vector <DatosClase> datos;
-    datos.resize(VectorClase.size());
+    datos.reserve(VectorClase.size());
 
     for (auto &Objeto: VectorClase)
         datos.push_back(Objeto.dato());
