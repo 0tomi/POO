@@ -201,7 +201,7 @@ struct Nodo{
     T dato;
     Nodo * link;
     Nodo * back;
-}
+};
 Nodo * first;
 Nodo * last;
 T getRecursive (Nodo * nodo, int &Contador);
