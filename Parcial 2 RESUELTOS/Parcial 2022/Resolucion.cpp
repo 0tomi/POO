@@ -121,6 +121,7 @@ GestorBienes::GestorBienes(const char* Ruta){
         Sin embargo como ven, son varias lineas de codigo que tranquilamente se pueden
         ahorrar porque capaz no da tiempo en el parcial.
     */
+
     DatosBienes aux;
     // Como es una variable, hace falta poner el &
     while( archivo.read((char*) &aux, sizeof(DatosBienes)) ){
@@ -136,4 +137,85 @@ GestorBienes::GestorBienes(const char* Ruta){
         }
     }
 
+}
+
+void GestorBienes::amortizarBienes(){
+    for (auto &bien: bienes)
+        bien->amortizar();
+}
+
+// Hasta aca la consigna 1, parece mucho pero es casi todo comentarios
+// y como lo aclare, hay varias cosas que se pueden quitar para no tener que 
+// escribir tanto. Ahora vamos con la 2:
+
+vector <Bienes*> GestorBienes::getBienesMayorValor(){
+    /* 
+        Usamos sort de <algorithm>, que nos permite ordenar el vector
+        automaticamente. Pero la consigna nos pide obtener las cosas con mayor valor,
+        sort por default ordena de menor a mayor, asi que con este lambda (funcion sin nombre)
+        no solo le decimos que ordene de mayor a menor, si no que tambien ordene basandose en
+        el valor del objeto.
+    */
+    sort(bienes.begin(), bienes.end(), [](Bienes* a, Bienes* b) {
+        return (a->getValor()) > (b->getValor());
+    });
+
+    vector<Bienes*> bienesMayorValor;
+    double mayorValor = bienes[0]->getValor();
+    /*
+        Usaremos copyif, que copia bajo una condicion, le pasamos primero donde arranca
+        y donde termina el vector de bienes, y le decimos que vaya insertando
+        los bienes en bienesMayorValor, solo si el valor del bien equivale al mayor.
+        mayorValor lo ponemos dentro del corchete porque es una variable de afuera, de
+        esta forma la metemos dentro del lambda.
+        Bienes* bien es lo que recibe la funcion yq ue usamos para obtneer su valor.
+    */
+    copy_if(bienes.begin(), bienes.end(), back_inserter(bienesMayorValor), [mayorValor](Bienes* bien){
+        return bien->getValor() == mayorValor;
+    });
+}
+
+/*
+    Aprovechamos la caracteristica de que los mapas si no tienen un dato se lo inventan
+    para directamente inicializar los datos que queremos.
+    Luego recorremos el vector de bienes, y segun el tipo, que lo buscamos en el mapa,
+    le vamos aumentando el valor.
+*/
+map<char, double> GestorBienes::getTotalPorTipo(){
+    map<char, double> totalBienes;
+    totalBienes['T'] = 0.0;
+    totalBienes['C'] = 0.0;
+    totalBienes['M'] = 0.0;
+
+    for (auto &bien: bienes)
+        totalBienes[bien->getTipo()] += bien->getValor();
+
+    return totalBienes;
+}
+
+// Consigna 4:
+template <class T>
+class ListaCircular{
+private:
+struct Nodo{
+    T dato;
+    Nodo * link;
+    Nodo * back;
+}
+Nodo * first;
+Nodo * last;
+
+public:
+    ListaCircular(): first(nullptr), last(nullptr) {}
+    ListaCircular(T dato): first(new Nodo{first, T}), last(first) {}
+    void insert(T dato);
+    T get(int pos);
+};
+
+template <class T>
+void ListaCircular<T>::insert(T dato){
+    if (first == nullptr){
+        first = new Nodo{first, T};
+        return;
+    }
 }
