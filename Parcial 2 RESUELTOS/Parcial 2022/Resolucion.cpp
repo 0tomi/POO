@@ -173,6 +173,8 @@ vector <Bienes*> GestorBienes::getBienesMayorValor(){
     copy_if(bienes.begin(), bienes.end(), back_inserter(bienesMayorValor), [mayorValor](Bienes* bien){
         return bien->getValor() == mayorValor;
     });
+
+    return bienesMayorValor;
 }
 
 /*
