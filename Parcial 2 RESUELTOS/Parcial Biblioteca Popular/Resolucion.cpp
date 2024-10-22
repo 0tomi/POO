@@ -82,5 +82,26 @@ bool Libro::impresoPorDiferentesEditoriales(){
 
 map<string, int> Libro::getCantidadEjemplaresPorEditorial(){
     map<string, int> editoriales;
-    
+    for (auto &ejemplar: ejemplares)
+        editoriales[ejemplar.getEditorial()]++;
+    return editoriales;
+}
+
+class Biblioteca
+{
+private:
+    vector<Libro> libros;
+public:
+    Biblioteca();
+    void addLibro(Libro lib) { libros.push_back(lib); }
+    void guardarDatos(const char * URLLibros, const char * URLEjemplares);
+};
+
+Biblioteca::Biblioteca()
+{
+}
+
+void Biblioteca::guardarDatos(const char * URLLibros, const char * URLEjemplares){
+    ofstream arch_libros(URL)
+
 }
