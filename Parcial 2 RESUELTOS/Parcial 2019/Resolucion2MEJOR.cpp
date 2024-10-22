@@ -73,6 +73,7 @@ bool Web::lookIfAccessed(char tipo){
 }
 
 // Gestor:
+// Nota: Lo ideal seria guardar las webs en un mapa<String,Web>, queda mas comodo asi.
 class GestorWeb{
 public:
     GestorWeb(const char * URLarchivo);
@@ -81,7 +82,7 @@ public:
     void escribirPuntajes(const char* URLarchivo);
     // Consigna 3:
     vector<Web> getTop5();
-    vector<Web> getSitiosWebIndexadosDirecto();
+    vector<Web> getSitiosWebIndexadosDirecto(); // esta podria retornar vector<string> nomas
 private:
     vector<Web> webs;
 };
