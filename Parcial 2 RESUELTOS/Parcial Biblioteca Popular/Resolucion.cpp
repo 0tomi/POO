@@ -49,6 +49,7 @@ public:
     int getCantidadEjemplares() { return ejemplares.size(); }
     bool impresoPorDiferentesEditoriales();
     map<string, int> getCantidadEjemplaresPorEditorial();
+    string getNombre() { return nombre; }
 };
 
 Libro::Libro(DatosLibro libro): identificacion(libro.identificacion), 
@@ -60,8 +61,11 @@ vector<DatosEjemplar> Libro::getDatosEjemplares()
 {
     vector<DatosEjemplar> datos;
     datos.reserve(ejemplares.size());
-    for (auto &ejemplar: ejemplares)
-        datos.push_back(ejemplar.getDatos());
+    for (auto &ejemplar: ejemplares){
+        auto dato = ejemplar.getDatos();
+        dato.identificacion_libro = this->identificacion;
+        datos.push_back(dato);
+    }
     return datos;
 }   
 
@@ -95,13 +99,73 @@ public:
     Biblioteca();
     void addLibro(Libro lib) { libros.push_back(lib); }
     void guardarDatos(const char * URLLibros, const char * URLEjemplares);
+    void consultarEjemplares(string nombreLibro, const char * direccionTxt);
+    vector<string> getLibroMayorCantidadEjemplares();
+    string getEditorialConMasEjemplares();
 };
 
-Biblioteca::Biblioteca()
-{
-}
+Biblioteca::Biblioteca() {}
 
 void Biblioteca::guardarDatos(const char * URLLibros, const char * URLEjemplares){
-    ofstream arch_libros(URL)
+    ofstream arch_libros(URLLibros, ios::binary);
+    ofstream arch_ejem(URLEjemplares, ios::binary);
 
+    if (arch_ejem.fail() || arch_libros.fail())
+        return;
+
+    for (auto &libro: libros){
+        auto datos_libro = libro.getDatos();
+        auto datos_ejemplares = libro.getDatosEjemplares();
+        arch_libros.write((char*) &datos_libro, sizeof(DatosLibro));
+        arch_ejem.write((char*) datos_ejemplares.data(), sizeof(DatosEjemplar) * datos_ejemplares.size());
+    }
+    arch_ejem.close(); arch_libros.close();
+}
+
+void Biblioteca::consultarEjemplares(string nombreLibro, const char * direccionTxt){
+    ofstream arch(direccionTxt);
+    if (arch.fail())
+        return;
+
+    auto libro = find(libros.begin(), libros.end(), [nombreLibro] (Libro &libro){
+        return nombreLibro == libro.getNombre();
+    });
+
+    if (libro == libros.end())
+        return;
+
+    for (auto& ejemplar: libro->getDatosEjemplares()) {
+        // esto deberia ir con espacios
+        arch << ejemplar.identificacion_libro << ejemplar.editorial << ejemplar.isbn << ejemplar.anio_impresion  << endl;
+    }
+    arch.close();
+}
+
+vector<string> Biblioteca::getLibroMayorCantidadEjemplares(){
+    sort(libros.begin(), libros.end(), [](Libro &a, Libro& b){
+        return a.getCantidadEjemplares() > b.getCantidadEjemplares();
+    });
+
+    vector<string> librosmayor;
+    int mayorCantidadEjemplares = libros[0].getCantidadEjemplares();
+    for (auto &libro: libros)
+        if (mayorCantidadEjemplares == libro.getCantidadEjemplares())
+            librosmayor.push_back(libro.getNombre());
+
+    return librosmayor;
+}
+
+string Biblioteca::getEditorialConMasEjemplares() {
+    map<string, int> editoriales;
+    for (auto &lib: libros) {
+        auto lib_edit = lib.getCantidadEjemplaresPorEditorial();
+        for (auto &edit: lib_edit)
+            editoriales[edit.first] += edit.second;
+    }
+    vector<pair<string, int>> temp(editoriales.begin(), editoriales.end());
+    sort(temp.begin(), temp.end(), [](pair<string,int> &a, pair<string,int> &b){
+        return a.second > b.second;
+    });
+    
+    return temp[0].first;
 }
