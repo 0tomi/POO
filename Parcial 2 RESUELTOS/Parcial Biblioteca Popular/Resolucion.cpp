@@ -23,6 +23,7 @@ public:
     Ejemplar(DatosEjemplar datos): isbn(datos.isbn), 
     anio_impresion(datos.anio_impresion), editorial(datos.editorial) {}
     DatosEjemplar getDatos();
+    string getEditorial() { return editorial; }
 private:
     int isbn, anio_impresion;
     string editorial;
@@ -73,5 +74,13 @@ DatosLibro Libro::getDatos()
 }
 
 bool Libro::impresoPorDiferentesEditoriales(){
-    string primerEditorial = ejemplares
+    string primerEditorial = ejemplares[0].getEditorial();
+    bool masDeUnEditorial = any_of(ejemplares.begin(), ejemplares.end(), 
+    [primerEditorial](Ejemplar &a){ return primerEditorial != a.getEditorial(); });
+    return masDeUnEditorial;
+}
+
+map<string, int> Libro::getCantidadEjemplaresPorEditorial(){
+    map<string, int> editoriales;
+    
 }
