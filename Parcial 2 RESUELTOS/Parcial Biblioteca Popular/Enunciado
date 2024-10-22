@@ -1,0 +1,18 @@
+Biblioteca popular - Software que permita consultar los libros
+La biblioteca popular lo contrata para realizar un software que permita consultar los libros que se encuentran en la biblioteca. Los libros tienen un número de identificación, un nombre y un autor. Además, de un libro puede haber varios ejemplares impresos, los ejemplares tienen un isbn (que permite identificarlo), un año de impresión y una editorial.
+
+Es necesario que el software permita cargar estos datos y guardarlos en uno o varios archivos binarios. Los cuales luego se van a poder consultar.
+
+(30) Realice un modelado que permita guardar los datos de los libros y sus ejemplares
+
+(25) Realice una funcionalidad que dado el nombre de un libro permita saber todos sus ejemplares e imprima en un archivo de texto, todos los datos de los ejemplares.
+
+(30) Realice procedimientos que permitan saber (utilizando stl) :
+
+        El o los libros con mayor cantidad de ejemplares.
+        Los libros que fueron impresos por diferentes editoriales.
+        La editorial que tiene más cantidad de ejemplares impresos.
+
+(15) Explique qué genera peor acoplamiento: la herencia o la composición. ¿Cuando utiliza polimorfismo? ¿Cuáles son sus ventajas y desventajas?
+
+Libre: La biblioteca lo vuelve a contratar dado que necesita organizar los libros por autor, un libro puede tener uno o varios autores y un autor puede escribir uno o varios libros. Re-diseñe el enunciado principal para tener en cuenta esto y los archivos para guardar dicha información.
