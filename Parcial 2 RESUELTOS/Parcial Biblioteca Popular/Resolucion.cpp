@@ -162,8 +162,9 @@ string Biblioteca::getEditorialConMasEjemplares() {
         for (auto &edit: lib_edit)
             editoriales[edit.first] += edit.second;
     }
-    vector<pair<string, int>> temp(editoriales.begin(), editoriales.end());
-    sort(temp.begin(), temp.end(), [](pair<string,int> &a, pair<string,int> &b){
+    typedef pair<string, int> par;  // para escribir menos
+    vector<par> temp(editoriales.begin(), editoriales.end());
+    sort(temp.begin(), temp.end(), [](par &a, par &b){
         return a.second > b.second;
     });
     
