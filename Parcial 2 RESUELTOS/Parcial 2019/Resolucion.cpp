@@ -143,3 +143,7 @@ vector <string> Gestor::getSitiosWebDirectos(){
 
     return Sitios;
 }
+
+class Vector {
+    
+};
