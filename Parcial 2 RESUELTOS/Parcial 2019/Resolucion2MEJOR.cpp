@@ -111,6 +111,14 @@ GestorWeb::GestorWeb(const char* URLar){
     }
 }
 
+Web GestorWeb::getWeb(string url){
+    // Si no encuentra la web, se inventa una
+    for (auto &web: webs)
+        if (web.getURL() == url)
+            return web;
+    return Web(url);
+}
+
 // Consigna 2
 void GestorWeb::escribirPuntajes(const char* URLar){
     ofstream archivo(URLar);
