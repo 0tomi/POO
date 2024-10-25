@@ -1,0 +1,32 @@
+UADER software alumnado
+La UADER lo contrata para realizar un software que permita saber
+si un alumno aprobó un curso determinado. El curso cuenta con un 
+número de exámenes y recuperatorios los cuales son cargados por 
+pantalla al iniciar el software.
+ 
+A la vez el software debe permitir cargar los datos de los alumnos 
+(dni, nombre y apellido), y las notas de sus exámenes tanto parciales 
+como recuperatorios. Los exámenes recuperatorios pisan la nota de un 
+examen parcial. Por ejemplo, si un alumno rinde 2 exámenes con 60 y 50 
+y recupera el último con 70. Sus notas serán 60 y 70.
+
+Los alumnos tienen un estado al finalizar el curso, 
+libre ausente no tiene la cantidad de exámenes requeridos, 
+libre si su promedio es menor a 55 o algún examen es menor a 50, 
+regular si su promedio es mayor a 55 y menor a 75. promocionado 
+si su promedio es mayor a 75 y ningún examen es menor a 70.
+
+1. (30) Realice el diseño que permita guardar la información en un archivo binario.
+
+2. (25) Escriba un archivo de texto que permita saber el 
+    estado de los alumnos con el siguiente formato: “Nombre ………. Estado”.
+
+3. (30) Realice funciones usando stl :
+    (10) Que obtenga el o los alumnos con mayor promedio por estado.
+    (10) Que obtenga el promedio total del curso.
+    (10) Que obtenga los alumnos que no recuperaron ningún examen.
+
+4. (15) Defina los siguientes conceptos fundamentales :
+    Template
+    STL
+    Archivo binario
