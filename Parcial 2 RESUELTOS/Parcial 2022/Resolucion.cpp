@@ -6,7 +6,6 @@
 #include <vector>
 #include <map>
 #include <algorithm>
-#include <numbers>
 #include <fstream>
 
 using namespace std;
