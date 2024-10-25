@@ -1,4 +1,5 @@
 #include <vector>
+#include <map>
 #include <algorithm>
 #include <numeric>
 #include <fstream>
@@ -28,7 +29,7 @@ public:
     float getPromedio();
     virtual bool aprueba() = 0;
     // Metodo para la consigna 3
-    int getCantidadNotas() { notas.size(); }
+    int getCantidadNotas() { return notas.size(); }
 };
 
 float Alumno::getPromedio(){
@@ -56,9 +57,28 @@ bool Regular::aprueba(){
 
 class Libre: public Alumno
 {
-
 public:
     Libre(int legajo, char nombre[]): Alumno(legajo, nombre) {}
     bool aprueba();
 };
+
+bool Libre::aprueba(){
+    return (notas.back() < 70) ? false: true;
+}
+
+class Curso{
+private: 
+    map<int, Alumno*> alumnos;  // Legajo, alumno
+public:
+    // Consigna 1
+    Curso(const char * URLAlumnos, const char * URLNotas);
+    Alumno* getAlumno(int legajo);
+    // Consigna 2
+    void makeTxt(const char * URL);
+    // Consigna 3:
+    vector<int> Actividad3a();
+    pair<int, int> Actividad3b();
+    vector<Alumno> Actividad3c();
+};
+
 
