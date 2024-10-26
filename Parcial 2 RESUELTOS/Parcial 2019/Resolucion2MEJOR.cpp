@@ -96,6 +96,7 @@ GestorWeb::GestorWeb(const char* URLar){
         mapalectura[url].push_back(temp);
     }
     arch.close();
+
     for (auto &aux: mapalectura){
         Web pagina(aux.first);
         for (auto &visita: aux.second){
@@ -135,8 +136,7 @@ void GestorWeb::escribirPuntajes(const char* URLar){
 // Consigna 3:
 vector<Web> GestorWeb::getTop5(){
     sort(webs.begin(), webs.end(), [](Web &a, Web &b){ return a.getPuntaje() > b.getPuntaje(); });
-    vector<Web> top5;
-    copy(webs.begin(), next(webs.begin(), 5), back_inserter(top5));
+    vector<Web> top5(webs.begin(), webs.begin() + 5);
     return top5;
 }
 
