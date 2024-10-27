@@ -100,6 +100,7 @@ public:
     void addLibro(Libro lib) { libros.push_back(lib); }
     void guardarDatos(const char * URLLibros, const char * URLEjemplares);
     void consultarEjemplares(string nombreLibro, const char * direccionTxt);
+    vector<Libro> librosConEditorialesDistintas();
     vector<string> getLibroMayorCantidadEjemplares();
     string getEditorialConMasEjemplares();
 };
@@ -141,8 +142,16 @@ void Biblioteca::consultarEjemplares(string nombreLibro, const char * direccionT
     arch.close();
 }
 
+vector<Libro> Biblioteca::librosConEditorialesDistintas(){
+    vector<Libro> variasEditoriales;
+    copy_if(libros.begin(), libros.end(), back_inserter(variasEditoriales),
+    [](Libro &a) { return a.impresoPorDiferentesEditoriales(); });
+
+    return variasEditoriales;
+}
+
 vector<string> Biblioteca::getLibroMayorCantidadEjemplares(){
-    sort(libros.begin(), libros.end(), [](Libro &a, Libro& b){
+    sort(libros.begin(), libros.end(), [](Libro &a, Libro &b){
         return a.getCantidadEjemplares() > b.getCantidadEjemplares();
     });
 
@@ -162,11 +171,19 @@ string Biblioteca::getEditorialConMasEjemplares() {
         for (auto &edit: lib_edit)
             editoriales[edit.first] += edit.second;
     }
+
     typedef pair<string, int> par;  // para escribir menos
-    vector<par> temp(editoriales.begin(), editoriales.end());
-    sort(temp.begin(), temp.end(), [](par &a, par &b){
-        return a.second > b.second;
-    });
+    auto maxEditorial = max_element(editoriales.begin(), editoriales.end(), 
+    [](par &a, par &b){ return a.second > b.second; });
+
+    return maxEditorial->first;
+
+    /// Solucion anterior, menos eficiente.
+
+    //vector<par> temp(editoriales.begin(), editoriales.end());
+    //sort(temp.begin(), temp.end(), [](par &a, par &b){
+    //    return a.second > b.second;
+    //});
     
-    return temp[0].first;
+    //return temp[0].first;
 }
