@@ -79,8 +79,8 @@ public:
     GestorBienes(const char* RutaArchivo);
     Bienes* getBien(int pos);
     void amortizarBienes();
-    /// Para la consigna 2:
-    void crearArchivo(const char* RutaArchivo);
+    /// Para la consigna 2: true = se pudo escribir, false = no.
+    bool crearArchivo(const char* RutaArchivo);
     /// Para la consigna 3:
     vector<Bienes*> getBienesMayorValor();
     // Para el punto 3b vamos a usar un mapa, aunque calculo que con un struct que contenga
@@ -143,9 +143,23 @@ void GestorBienes::amortizarBienes(){
         bien->amortizar();
 }
 
-// Hasta aca la consigna 1, parece mucho pero es casi todo comentarios
+bool GestorBienes::crearArchivo(const char * ruta){
+    ofstream arch(ruta);
+    if (arch.fail()) return false;
+
+    this->amortizarBienes();
+    for (auto &bien: bienes){
+        arch << "Codigo: " << bien->getCodigo() << " | valor: " << bien->getValor()
+            << endl; 
+    }
+
+    arch.close();
+    return true;
+}
+
+// Hasta aca la consigna 1 y 2, parece mucho pero es casi todo comentarios
 // y como lo aclare, hay varias cosas que se pueden quitar para no tener que 
-// escribir tanto. Ahora vamos con la 2:
+// escribir tanto. Ahora vamos con la 3:
 
 vector <Bienes*> GestorBienes::getBienesMayorValor(){
     /* 
