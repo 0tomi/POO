@@ -83,6 +83,7 @@ public:
     // Consigna 3:
     vector<Web> getTop5();
     vector<Web> getSitiosWebIndexadosDirecto(); // esta podria retornar vector<string> nomas
+
 private:
     vector<Web> webs;
 };

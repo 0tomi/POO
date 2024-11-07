@@ -135,7 +135,6 @@ GestorBienes::GestorBienes(const char* Ruta){
             break;
         }
     }
-
 }
 
 void GestorBienes::amortizarBienes(){
