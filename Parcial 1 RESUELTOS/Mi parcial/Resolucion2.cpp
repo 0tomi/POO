@@ -15,6 +15,7 @@ public:
     T& operator[](size_t pos);    // ALTERNATIVA
     // Consigna c
     void eliminar(T dato);
+    void eliminar2(T dato); // ALTERNATIVA MAS SIMPLE
     // metodo util
     size_t size() { return this->size_; }
 private:
@@ -66,6 +67,18 @@ void Vector<T>::resize(size_t newMax)
     delete[] this->data;
     this->data = temp;
     this->max = newMax;
+}
+
+// Otra version alternativa mucha mas simple
+template <class T>
+void Vector<T>::eliminar2(T dato){
+    int j = 0;
+    for (int i = 0; i < this->size_; i++)
+        if (this->data[i] != dato)
+            this->data[j++] = this->data[i];
+
+    // Actualizamos el size con la cantidad nueva.
+    this->size_ -= (this->size_ - j);
 }
 
 // Version alternativa, funciona mejor que la que plantee en el parcial.
