@@ -19,6 +19,7 @@ public:
     size_t size() { return this->size_};
 private:
     void resize(size_t newMax);
+    void eliminar(size_t pos);
     T * data;
     size_t max;
     size_t size_;
@@ -71,22 +72,17 @@ void Vector<T>::resize(size_t newMax)
 template<class T>
 void Vector<T>::eliminar(T dato)
 {
-    Vector<size_t> Ocurrencias;
-    for (size_t i = 0; i < this->max; i++)
-        if (this->data[i] == dato)
-            Ocurrencias.push_back(i);
+    for (size_t i = 0; i < this->size_; i++)
+        while((this->data[i] == dato) && (i < this->size_))
+            eliminar(i);
+}
 
-    if (Ocurrencias.size() == 0)
-        return;
+template <class T>
+void Vector<T>::eliminar(size_t pos){
+    for (int i = pos; i < this->size; i++)
+        this->data[i] = data[i+1];
 
-    // Copia siempre y cuando la posicion no este dentro de las ocurrencias a eliminar.
-    int j, k; j = k = 0;
-    for (size_t i = 0; (i < this->max) && (k < Ocurrencias.size()); i++)
-        if (i != Ocurrencias[k])
-            this->data[j++] = data[i];
-        else ++k;  
-
-    this->size -= Ocurrencias.size();
+    this->size--;
 }
  
 // Consigna 2:
