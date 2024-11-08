@@ -7,7 +7,7 @@ template <class T>
 class Vector{
 public:
     Vector();
-    ~Vector() { delete[] data } // no es necesario.
+    ~Vector() { delete[] data; } // no es necesario.
     // Consigna a
     void push_back(T data);
     // Consigna b
@@ -16,7 +16,7 @@ public:
     // Consigna c
     void eliminar(T dato);
     // metodo util
-    size_t size() { return this->size_};
+    size_t size() { return this->size_; }
 private:
     void resize(size_t newMax);
     void eliminar(size_t pos);
@@ -79,10 +79,10 @@ void Vector<T>::eliminar(T dato)
 
 template <class T>
 void Vector<T>::eliminar(size_t pos){
-    for (int i = pos; i < this->size; i++)
+    for (int i = pos; i < this->size_; i++)
         this->data[i] = data[i+1];
 
-    this->size--;
+    this->size_--;
 }
  
 // Consigna 2:
@@ -98,3 +98,26 @@ protected:
     int codigo;
     char * nombre;
 };
+
+int main(int argc, char const *argv[])
+{
+    Vector<int> test;
+    test.push_back(1);
+    test.push_back(2);
+    test.push_back(2);
+    test.push_back(3);
+    test.push_back(4);
+    test.push_back(5);
+    test.push_back(2);
+
+    std::cout << "Antes de limpiar el 2: ";
+    for (size_t i = 0; i < test.size(); i++)
+        std::cout << test[i] << " ";
+
+    test.eliminar(2);
+    std::cout << "\nDespues de limpiar el 2: ";
+    for (size_t i = 0; i < test.size(); i++)
+        std::cout << test[i] << " ";
+
+    return 0;
+}
