@@ -15,14 +15,43 @@ class Alumno {
 public:
     Alumno(int dni, char * nombre);
     void addExamen(int nota, char tipo, int num_parcail);
+    void addExamen(Examen);
     void removerExamen();
     void getExamen(int pos);
 
     int promedio();
+    int getCantExamenes();
 private:
     Examen * examenes;
     int cant_examenes;
 };
+
+void Alumno::addExamen(Examen ex){
+    int indice = ex.getNro()-1;
+
+    if (ex.getTipo() == 'P'){
+        if (cant_examenes < indice)
+            redim<Examen*>(this->examenes, cant_examenes+1);
+        examenes[indice] = ex;
+        cant_examenes++;
+        return;
+    }
+
+    if (cant_examenes < indice){
+        redim<Examen*>(this->examenes, cant_examenes+1);
+        examenes[indice] = ex;
+        return;
+    }
+       
+    if (examenes[indice].getNota() < ex.getNota())
+        examenes[indice] = ex;
+}
+
+int Alumno::getCantExamenes() {
+    int cantidad;
+
+
+}
 
 class Curso{
 public:
