@@ -104,13 +104,25 @@ public:
     ProductoBase(int codigo, const char * nombre);
     friend std::ostream& operator<< (std::ostream& os, ProductoBase& p);
     virtual char * getIngredientes() = 0;
-    int getCodigo() { return codigo; }
-    char * getNombre();
+    int getCodigo() { return codigo; }  // este tipo de getters no hace falta poner
+    char * getNombre();                 
 
 protected:
+    char * copyStr(const char *);
+    void append(char *  &primero, const char * segundo);
     int codigo;
     char * nombre;
 };
+
+ProductoBase::ProductoBase(int codigo, const char * nombre) {
+
+}
+
+std::ostream& operator<< (std::ostream& os, ProductoBase& p){
+
+}
+
+
 
 int main(int argc, char const *argv[])
 {
