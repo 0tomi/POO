@@ -4,6 +4,25 @@
 
 /// Ejemplo: AmpliarVector<Padre>(ArrayPadre, maxArray);
 
+// Version 0: no se si anda
+template <class Clase>
+void AmpliarVector(Clase &arrayViejo, int &max)
+{
+    // Aumentamos x2 el maximo del array.
+    int newMax = max*2;
+    // Creamos un nuevo array de punteros, pero con el doble de tamanio.
+    Clase newArray = new Clase[newMax]; 
+    // Copiamos los datos del array viejo dentro del array nuevo
+    for (int i = 0; i < max; i++)
+        newArray[i] = arrayViejo[i];
+    // Liberamos la memoria del array viejo
+    delete[] arrayViejo;
+    // Actualizamos el max, y el array viejo
+    arrayViejo = newArray;
+    max = newMax;
+}
+
+
 // Version 1:
 // Recibe por parametro un doble puntero a una clase, y un maximo. 
 // Amplia el array x2.

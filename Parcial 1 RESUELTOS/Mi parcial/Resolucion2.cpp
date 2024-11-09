@@ -12,7 +12,7 @@ public:
     void push_back(T data);
     // Consigna b
     T get(size_t pos);
-    T& operator[](size_t pos);    // ALTERNATIVA
+    T& operator[](size_t pos);   // ALTERNATIVA
     // Consigna c
     void eliminar(T dato);
     void eliminar2(T dato); // ALTERNATIVA MAS SIMPLE
@@ -221,7 +221,6 @@ void Gestor::mostrarProductos(){
     for (size_t i = 0; i < tam; i++)
         std::cout << *productos[i] << std::endl;
 }
-
 
 int main(int argc, char const *argv[])
 {
