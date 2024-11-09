@@ -99,6 +99,7 @@ void Vector<T>::eliminar(size_t pos){
 }
  
 // Consigna 2:
+// Superclase abstracta para laburar el parcial
 class ProductoBase {
 public:
     ProductoBase(int codigo, const char * nombre);
@@ -109,19 +110,117 @@ public:
 
 protected:
     char * copyStr(const char *);
-    void append(char *  &primero, const char * segundo);
+    char * append(char *  &primero, const char * segundo);
     int codigo;
     char * nombre;
 };
 
 ProductoBase::ProductoBase(int codigo, const char * nombre) {
-
+    this->codigo = codigo;
+    this->nombre = this->copyStr(nombre);
 }
 
 std::ostream& operator<< (std::ostream& os, ProductoBase& p){
-
+    os << "Producto: " << p.getNombre() << " Codigo: " << p.getCodigo() << std::endl
+       << "Ingredientes: \n";
+    os << p.getIngredientes();
 }
 
+char * ProductoBase::getNombre(){
+    return copyStr(this->nombre);
+}
+
+char * ProductoBase::copyStr(const char * str){
+    int tam = strlen(str);
+    char * newStr = new char[tam + 1];
+    strcpy(newStr, str);
+    return newStr;
+}
+
+char * ProductoBase::append(char *  &primero, const char * segundo){
+    char * suma = new char[strlen(primero) + strlen(segundo) + 1];
+    strcpy(suma, primero);
+    strcat(suma, segundo);
+    delete primero; 
+    primero = suma;
+    return primero; // esto no hace falta, podria ser void, pero ante la duda si lo llego a necesitar..
+}
+
+// Clases hijas:
+class Producto: public ProductoBase
+{
+private:
+    Vector<char*> ingredientes;
+public:
+    Producto(int codigo, const char * nombre): ProductoBase(codigo, nombre) {}
+    void addIngrediente(const char * ing) { ingredientes.push_back(this->copyStr(ing)); }
+    char * getIngredientes();
+};
+
+char * Producto::getIngredientes(){
+    size_t tam = this->ingredientes.size();
+    char * ingredientes_ = this->copyStr(ingredientes[0]);
+    for (size_t i = 1; i < tam; i++){
+        this->append(ingredientes_, ingredientes[i]);
+        this->append(ingredientes_, "\n");  // para que salgan separados xd
+    }
+
+    return ingredientes_;
+}
+
+class ProductoCompuesto: public ProductoBase
+{
+private:
+    Vector<ProductoBase*> productos;
+public:
+    ProductoCompuesto(int codigo, const char * nombre): ProductoBase(codigo, nombre) {}
+    void addProducto(ProductoBase * newprod);
+    char * getIngredientes();
+};
+
+
+void ProductoCompuesto::addProducto(ProductoBase * newprod){
+    if (dynamic_cast<ProductoCompuesto*> (newprod))
+        return; // si es producto compuesto no lo agregamos.
+
+    productos.push_back(newprod);
+}
+
+// Aca el tema es que mostrar, podemos mostrar los ingredientes directamente.
+// Para que quede mas fachero voy a mostrar el nombre de los productos que componen al compuesto.
+
+char * ProductoCompuesto::getIngredientes(){
+    size_t tam = this->productos.size();
+    char * compuesto = this->copyStr("");
+    for (size_t i = 0; i < tam; i++) {
+        this->append(compuesto, productos[i]->getNombre());
+        this->append(compuesto, "\n");
+        // si no hubiera querido mostrar el nombre del producto, el for solo tendria esta linea.
+        this->append(compuesto, productos[i]->getIngredientes());
+    }
+
+    return compuesto;
+}
+
+// Clase gestora
+class Gestor {
+private:
+    Vector<ProductoBase*> productos;
+public:
+    Gestor();
+    void addProducto(ProductoBase * newProd);
+    ProductoBase * getProd(int pos);
+
+    // consigna b
+    void mostrarProductos();
+};
+
+// la unica que voy a programar es la b porque las otras son medio obvias
+void Gestor::mostrarProductos(){
+    size_t tam = productos.size();
+    for (size_t i = 0; i < tam; i++)
+        std::cout << *productos[i] << std::endl;
+}
 
 
 int main(int argc, char const *argv[])
