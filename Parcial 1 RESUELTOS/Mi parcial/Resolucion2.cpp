@@ -78,7 +78,7 @@ void Vector<T>::eliminar2(T dato){
             this->data[j++] = this->data[i];
 
     // Actualizamos el size con la cantidad nueva.
-    this->size_ -= (this->size_ - j);
+    this->size_ = j;
 }
 
 // Version alternativa, funciona mejor que la que plantee en el parcial.
