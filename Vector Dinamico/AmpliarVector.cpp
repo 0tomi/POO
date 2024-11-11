@@ -4,22 +4,22 @@
 
 /// Ejemplo: AmpliarVector<Padre>(ArrayPadre, maxArray);
 
-// Version 0: no se si anda
+// Version 0b:
+// Pasamos el nuevo maximo que tendra el vector por parametros.
 template <class Clase>
-void AmpliarVector(Clase &arrayViejo, int &max)
+void AmpliarVector(Clase* &arrayViejo, int &max, int nuevoMax)
 {
-    // Aumentamos x2 el maximo del array.
-    int newMax = max*2;
     // Creamos un nuevo array de punteros, pero con el doble de tamanio.
-    Clase newArray = new Clase[newMax]; 
+    Clase* newArray = new Clase[nuevoMax]; 
     // Copiamos los datos del array viejo dentro del array nuevo
     for (int i = 0; i < max; i++)
         newArray[i] = arrayViejo[i];
     // Liberamos la memoria del array viejo
-    delete[] arrayViejo;
+    if (arrayViejo)
+        delete[] arrayViejo;
     // Actualizamos el max, y el array viejo
     arrayViejo = newArray;
-    max = newMax;
+    max = nuevoMax;
 }
 
 

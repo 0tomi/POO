@@ -2,10 +2,29 @@ char * copyStr(const char * str){
 
 }
 
-template<class T>
-void redim(T &array, int max){}
+template <class Clase>
+void redim(Clase* &arrayViejo, int &max, int nuevoMax)
+{
+    // Creamos un nuevo array de punteros, pero con el doble de tamanio.
+    Clase* newArray = new Clase[nuevoMax]; 
+    // Copiamos los datos del array viejo dentro del array nuevo
+    for (int i = 0; i < max; i++)
+        newArray[i] = arrayViejo[i];
+    // Liberamos la memoria del array viejo
+    if (arrayViejo)
+        delete[] arrayViejo;
+    // Actualizamos el max, y el array viejo
+    arrayViejo = newArray;
+    max = nuevoMax;
+}
 
 class Examen {
+public:
+    Examen(int nota, char tipo, int nparcial);
+    int getNota();
+    char getTipo();
+    int getNumParcial();
+private:
     int nota;
     char tipo; // R o P
     int numero_parcial;
@@ -14,37 +33,28 @@ class Examen {
 class Alumno {
 public:
     Alumno(int dni, char * nombre);
-    void addExamen(int nota, char tipo, int num_parcail);
     void addExamen(Examen);
-    void removerExamen();
+    void removeExamen(int nota, int num_parcial);
     void getExamen(int pos);
 
     int promedio();
     int getCantExamenes();
 private:
-    Examen * examenes;
-    int cant_examenes;
+    Examen * examenes = nullptr;
+    int cant_examenes = 0;
 };
 
 void Alumno::addExamen(Examen ex){
-    int indice = ex.getNro()-1;
+    int indice = ex.getNumParcial()-1;
 
     if (ex.getTipo() == 'P'){
-        if (cant_examenes < indice)
-            redim<Examen*>(this->examenes, cant_examenes+1);
+        if (indice >= cant_examenes)
+            redim(this->examenes, cant_examenes, cant_examenes+1);
         examenes[indice] = ex;
-        cant_examenes++;
         return;
     }
 
-    if (cant_examenes < indice){
-        redim<Examen*>(this->examenes, cant_examenes+1);
-        examenes[indice] = ex;
-        return;
-    }
-       
-    if (examenes[indice].getNota() < ex.getNota())
-        examenes[indice] = ex;
+    examenes[indice] = ex;
 }
 
 int Alumno::getCantExamenes() {
