@@ -2,22 +2,6 @@ char * copyStr(const char * str){
 
 }
 
-template <class Clase>
-void redim(Clase* &arrayViejo, int &max, int nuevoMax)
-{
-    // Creamos un nuevo array de punteros, pero con el doble de tamanio.
-    Clase* newArray = new Clase[nuevoMax]; 
-    // Copiamos los datos del array viejo dentro del array nuevo
-    for (int i = 0; i < max; i++)
-        newArray[i] = arrayViejo[i];
-    // Liberamos la memoria del array viejo
-    if (arrayViejo)
-        delete[] arrayViejo;
-    // Actualizamos el max, y el array viejo
-    arrayViejo = newArray;
-    max = nuevoMax;
-}
-
 class Examen {
 public:
     Examen();
@@ -30,6 +14,21 @@ private:
     char tipo; // R o P
     int numero_parcial;
 };
+
+void redim(Examen* &arrayViejo, int &maxOriginal, int nuevoMax)
+{
+    // Creamos un nuevo array de punteros, pero con el doble de tamanio.
+    Examen* newArray = new Examen[nuevoMax]; 
+    // Copiamos los datos del array viejo dentro del array nuevo
+    for (int i = 0; i < maxOriginal; i++)
+        newArray[i] = arrayViejo[i];
+    // Liberamos la memoria del array viejo
+    if (arrayViejo)
+        delete[] arrayViejo;
+    // Actualizamos el max, y el array viejo
+    arrayViejo = newArray;
+    maxOriginal = nuevoMax;
+}
 
 class Alumno {
 public:
