@@ -20,6 +20,7 @@ void redim(Clase* &arrayViejo, int &max, int nuevoMax)
 
 class Examen {
 public:
+    Examen();
     Examen(int nota, char tipo, int nparcial);
     int getNota();
     char getTipo();
@@ -40,17 +41,30 @@ public:
     int promedio();
     int getCantExamenes();
 private:
-    Examen * examenes = nullptr;
+    Examen * examenes = new Examen[max];
     int cant_examenes = 0;
+    int max = 2;
 };
+
+void Alumno::removeExamen(int nota, int num_parcial){
+    int j = 0;
+    for (int i = 0; i < cant_examenes; i++)
+        if (this->examenes[i].getNota() != nota && this->examenes[i].getNumParcial() != num_parcial){
+            examenes[j] = examenes[i];
+            j++;
+        }
+
+    this->cant_examenes = j;            
+}
 
 void Alumno::addExamen(Examen ex){
     int indice = ex.getNumParcial()-1;
 
     if (ex.getTipo() == 'P'){
-        if (indice >= cant_examenes)
-            redim(this->examenes, cant_examenes, cant_examenes+1);
+        if (indice >= max)
+            redim(this->examenes, max, max*2);
         examenes[indice] = ex;
+        this->cant_examenes++;
         return;
     }
 
