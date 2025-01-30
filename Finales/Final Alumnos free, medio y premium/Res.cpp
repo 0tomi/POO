@@ -100,15 +100,37 @@ class Gestor
 {
 private:
     std::vector<Alumno*> alumnos;
+    void guardarArchivo(std::string direc, std::vector<data_alumno> &alum, int cant_Notas);
 public:
     Gestor(/* args */);
+    void guardarDatos();
+    // + otros metodos para otras cosas 
     ~Gestor();
 };
 
-Gestor::Gestor(/* args */)
-{
+void Gestor::guardarArchivo(std::string direc, std::vector<data_alumno> &alum, int cant_Notas) {
+    std::ofstream archivo(direc, std::ios::binary);
+    for (auto alumno: alum) {
+        archivo.write((char*) alumno.nya, sizeof(alumno.nya));
+        archivo.write((char*) alumno.code, sizeof(int));
+        archivo.write((char*) alumno.notas.data(), sizeof(float) * cant_Notas);
+    }
+    archivo.close();
 }
 
-Gestor::~Gestor()
-{
+void Gestor::guardarDatos() {
+    std::vector<data_alumno> datos[3]; // 0: Free, 1: medium, 2: premium
+    for (auto alumno: this->alumnos) {
+        int i = 0;  // arrancamos asumiendo que es free, si no lo llega a ser se cambia.
+        if (dynamic_cast<Alumno_Medio*>(alumno))
+            i = 1;
+        else if (dynamic_cast<Alumno_Premium*>(alumno))
+            i = 2;
+        
+        datos[i].push_back(alumno->data());
+    }
+
+    this->guardarArchivo("/alumnos_invitados.dat", datos[0], 1);
+    this->guardarArchivo("/alumnos_medio.dat", datos[1], 3);
+    this->guardarArchivo("/alumnos_premium.dat", datos[2], 5);
 }
