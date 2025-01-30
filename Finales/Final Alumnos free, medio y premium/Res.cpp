@@ -54,6 +54,47 @@ data_alumno Alumno_Premium::data()
     return datos;
 }
 
+
+class Alumno_Medio: public Alumno
+{
+private:
+    float notas[3]; // tiene 5 notas
+    /* data */
+public:
+    Alumno_Medio(/* args */);
+    ~Alumno_Medio();
+    data_alumno data();
+};
+
+data_alumno Alumno_Medio::data()
+{
+    auto datos = Alumno::data();
+    for (int i = 0; i < 3; i++)
+        datos.notas.push_back(this->notas[i]);
+
+    return datos;
+}
+
+
+class Alumno_Invitado: public Alumno
+{
+private:
+    float nota; // tiene 5 notas
+    /* data */
+public:
+    Alumno_Invitado(/* args */);
+    ~Alumno_Invitado();
+    data_alumno data();
+};
+
+data_alumno Alumno_Invitado::data()
+{
+    auto datos = Alumno::data();
+    datos.notas.push_back(this->nota);
+
+    return datos;
+}
+
 // ### Ejemplo como lo implementaria el gestor: ###
 class Gestor
 {
