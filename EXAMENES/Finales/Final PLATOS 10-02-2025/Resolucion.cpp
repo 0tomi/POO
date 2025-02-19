@@ -75,6 +75,7 @@ public:
 */
 
 void Plato::guardar(ofstream &platos, ofstream &ingredientes_, ofstream &relaciones){
+    platos.write(this->Id, sizeof(char) * 20);
     for (auto ing: ingredientes){
         // Escribimos la relacion entre el plato actual y el ingrediente
         relaciones.write(this->Id, sizeof(char) * 20);
@@ -82,8 +83,7 @@ void Plato::guardar(ofstream &platos, ofstream &ingredientes_, ofstream &relacio
 
         auto plato = dynamic_cast<Plato*>(ing);
         if (plato){
-            platos.write(this->Id, sizeof(char) * 20);
-            // aca iria el costo y otras cosas si hubiera
+            // aca se guarda el costo y otras cosas si hubiera
             plato->guardar(platos, ingredientes_, relaciones);
         }
         
