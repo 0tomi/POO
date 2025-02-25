@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -31,6 +32,7 @@ private:
     infoEmpleado interpretar(string line);
     void recursiveGuard(ifstream &arch, Empleado* father, infoEmpleado info);
 
+    // Solucion B
     void lectura2(string url);
 };
 
@@ -83,17 +85,28 @@ infoEmpleado Gestor::interpretar(string line)
     temp.guiones = i;
     // Obtenemos el codigo
     // Empezando desde donde terminamos anteriormente, buscamos donde empieza y donde termina el numero, luego lo hacemos substr y lo convertimos en codigo.
-    auto nombre = line.find_first_not_of('-', i);
-    temp.cod = stoi(line.substr(i, nombre-i));
-    // Obtenemos el code 
-    temp.nombre = line.substr(nombre);
+    size_t separator = line.find('-', i); // Buscar el guión que separa código y nombre
+    temp.cod = stoi(line.substr(i, separator - i));
+    temp.nombre = line.substr(separator + 1);
 
     return temp;
 }
 
+// Solucion B
+
 void Gestor::lectura2(string url){
+    queue <infoEmpleado> colaEmpleados;
     ifstream arch(url);
     if (arch.fail()) return;
 
+    string line;
+    while (getline(arch, line))
+        colaEmpleados.push(interpretar(line));
 
+
+    Empleado* padre = nullptr;        
+
+    while (!colaEmpleados.empty()){
+
+    }
 }
