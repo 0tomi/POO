@@ -61,8 +61,15 @@ void Gestor::recursiveGuard(ifstream &arch, Empleado* father, infoEmpleado info)
             recursiveGuard(arch, emp, temp);    // la funcion, pero esta vez siendo el empleado que acabamos de cargar el padre.
         else if (temp.guiones == info.guiones)
             recursiveGuard(arch, father, temp);
-        else 
-            recursiveGuard(arch, father->getResponsable(), temp); // retrocedemos un padre si tenemos menos guiones.
+        else{
+            // Si tenemos menos guiones, es porque hay que volver pa' tra', asi que volvemos hasta quedar en el nivel adecuado.
+            auto padre = father;
+            int nivelar = info.guiones - temp.guiones;
+            for (int i = 0; i < nivelar && padre; i++)  // && padre, evaluamos que no se nos vaya a un puntero nulo, aunque no es necesario segun la logica del enunciado
+                padre = father->getResponsable();
+
+            recursiveGuard(arch, padre, temp); 
+        }
     }
 }
 
